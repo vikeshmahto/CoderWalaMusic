@@ -6,6 +6,7 @@ import YouTubeBackground from './YouTubeBackground'
 import MusicPlayer from './MusicPlayer'
 import { YouTubePlayer } from 'react-youtube'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // Placeholder details for the playlist
 const PLAYLIST_ID = 'PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy'
@@ -105,7 +106,7 @@ export default function AppContainer() {
   }
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-between overflow-hidden">
+    <div className="relative w-full h-screen flex flex-col items-center justify-between overflow-hidden">
       {/* Background Video Wrapper */}
       <div className="absolute inset-0 z-0 bg-black">
         <video
@@ -121,7 +122,7 @@ export default function AppContainer() {
       </div>
 
       <div className="z-10 w-full h-full flex flex-col justify-between items-center py-12 px-6">
-        <div className="text-center mt-0 animate-fade-in">
+        <div className="text-center mt-16 animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-wider drop-shadow-lg">
             कोडर वाला
           </h1>
@@ -160,9 +161,13 @@ export default function AppContainer() {
             isReady={isReady}
           />
 
-          <p className="text-white/50 text-center mt-8 text-xs font-light">
-            made with ♥ by Vikesh
-          </p>
+          <div className="text-white/50 text-center mt-8 text-xs font-light flex items-center justify-center gap-2">
+            <span>made with ♥ by Vikesh</span>
+            <span>•</span>
+            <Link href="/about" className="hover:text-white transition-colors">
+              About & FAQ
+            </Link>
+          </div>
         </div>
       </div>
 

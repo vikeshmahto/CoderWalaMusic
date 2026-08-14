@@ -8,8 +8,22 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Truck Driver Music",
-  description: "Aesthetic music player for your journey.",
+  title: "Coder Wala Music | Coding ke Liye Best Lofi & Focus Music",
+  description: "Coders aur developers ke liye best background music player — lofi, focus beats aur coding vibes, bina ruke continuous play. Made with love by Vikesh.",
+  keywords: "coder music, coding music player, lofi for coders, dev music, programmer music india, coding beats",
+  openGraph: {
+    title: "Coder Wala Music",
+    description: "Coding karte waqt sunne wala best music player",
+    url: "https://coder-wala-music.vercel.app",
+    siteName: "Coder Wala Music",
+    images: ["/og-image.png"],
+    locale: "hi_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Coder Wala Music",
+    description: "Coding ke liye best background music",
+  },
 };
 
 export default function RootLayout({
@@ -18,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} h-full antialiased`}>
-      <body className="h-full overflow-hidden bg-black font-sans">
+    <html lang="en" className={`${outfit.variable} h-full antialiased scroll-smooth`}>
+      <body className="min-h-full bg-black font-sans text-white">
         {children}
       </body>
     </html>
