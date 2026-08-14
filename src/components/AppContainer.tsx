@@ -106,21 +106,22 @@ export default function AppContainer() {
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-between overflow-hidden">
-      {/* Background Image Wrapper */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/truck_desert_bg.jpg"
-          alt="Background"
-          fill
-          priority
-          className="object-cover"
+      {/* Background Video Wrapper */}
+      <div className="absolute inset-0 z-0 bg-black">
+        <video
+          src="/bg-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-80"
         />
         {/* Subtle overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
       </div>
 
       <div className="z-10 w-full h-full flex flex-col justify-between items-center py-12 px-6">
-        <div className="text-center mt-16 animate-fade-in">
+        <div className="text-center mt-0 animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-wider drop-shadow-lg">
             कोडर वाला
           </h1>
