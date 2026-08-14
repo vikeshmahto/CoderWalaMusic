@@ -1,83 +1,108 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import YouTubeBackground from "./YouTubeBackground";
-import MusicPlayer from "./MusicPlayer";
-import { YouTubePlayer } from "react-youtube";
-import Image from "next/image";
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import YouTubeBackground from './YouTubeBackground'
+import MusicPlayer from './MusicPlayer'
+import { YouTubePlayer } from 'react-youtube'
+import Image from 'next/image'
 
 // Placeholder details for the playlist
-const PLAYLIST_ID = "PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy";
+const PLAYLIST_ID = 'PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy'
+
+const TAGLINES = [
+  "बुरी नज़र वाले तेरा कोड क्रैश हो",
+  "नज़र लगे तो प्रोडक्शन में बग आये",
+  "जलने वाले तेरा सर्वर डाउन हो",
+  "चाय पिया, बग हटाया, फिर सो गए",
+  "दिन को सोया, रात को कोडा",
+  "कोड लिखा दिल से, चला किस्मत से",
+  "काम मेरा, क्रेडिट बॉस का",
+  "डेडलाइन नज़दीक, नींद है दूर",
+  "बग है दुश्मन, कॉफी है यार"
+]
 
 export default function AppContainer() {
-  const [player, setPlayer] = useState<YouTubePlayer | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [videoTitle, setVideoTitle] = useState("Loading...");
-  const [author, setAuthor] = useState("YouTube Music");
-  const [isReady, setIsReady] = useState(false);
+  const [player, setPlayer] = useState<YouTubePlayer | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [duration, setDuration] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [videoTitle, setVideoTitle] = useState('Loading...')
+  const [author, setAuthor] = useState('YouTube Music')
+  const [isReady, setIsReady] = useState(false)
+  const [taglineIndex, setTaglineIndex] = useState(0)
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    const taglineInterval = setInterval(() => {
+      setTaglineIndex((prev) => (prev + 1) % TAGLINES.length)
+    }, 120000)
+
+    return () => clearInterval(taglineInterval)
+  }, [])
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout
     if (isPlaying && player) {
       interval = setInterval(async () => {
-        const time = await player.getCurrentTime();
-        setCurrentTime(time);
-      }, 1000);
+        const time = await player.getCurrentTime()
+        setCurrentTime(time)
+      }, 1000)
     }
-    return () => clearInterval(interval);
-  }, [isPlaying, player]);
+    return () => clearInterval(interval)
+  }, [isPlaying, player])
 
   const handleReady = (event: { target: YouTubePlayer }) => {
-    setPlayer(event.target);
-    setIsReady(true);
-    updateVideoData(event.target);
-  };
+    setPlayer(event.target)
+    setIsReady(true)
+    updateVideoData(event.target)
+  }
 
   const updateVideoData = async (ytPlayer: YouTubePlayer) => {
-    const data = await ytPlayer.getVideoData();
+    const data = await ytPlayer.getVideoData()
     if (data) {
-      setVideoTitle(data.title || "Unknown Track");
-      setAuthor(data.author || "YouTube Music");
+      setVideoTitle(data.title || 'Unknown Track')
+      setAuthor(data.author || 'YouTube Music')
     }
-    const dur = await ytPlayer.getDuration();
-    setDuration(dur);
-  };
+    const dur = await ytPlayer.getDuration()
+    setDuration(dur)
+  }
 
-  const handleStateChange = (event: { target: YouTubePlayer; data: number }) => {
+  const handleStateChange = (event: {
+    target: YouTubePlayer
+    data: number
+  }) => {
     // data 1 is playing, 2 is paused
     if (event.data === 1) {
-      setIsPlaying(true);
-      updateVideoData(event.target);
+      setIsPlaying(true)
+      updateVideoData(event.target)
     } else if (event.data === 2 || event.data === 0) {
-      setIsPlaying(false);
+      setIsPlaying(false)
     }
-  };
+  }
 
   const togglePlay = () => {
-    if (!player) return;
+    if (!player) return
     if (isPlaying) {
-      player.pauseVideo();
+      player.pauseVideo()
     } else {
-      player.playVideo();
+      player.playVideo()
     }
-  };
+  }
 
   const playNext = () => {
-    if (player) player.nextVideo();
-  };
+    if (player) player.nextVideo()
+  }
 
   const playPrevious = () => {
-    if (player) player.previousVideo();
-  };
+    if (player) player.previousVideo()
+  }
 
   const handleSeek = (seconds: number) => {
     if (player) {
-      player.seekTo(seconds, true);
-      setCurrentTime(seconds);
+      player.seekTo(seconds, true)
+      setCurrentTime(seconds)
     }
-  };
+  }
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-between overflow-hidden">
@@ -97,7 +122,7 @@ export default function AppContainer() {
       <div className="z-10 w-full h-full flex flex-col justify-between items-center py-12 px-6">
         <div className="text-center mt-16 animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-wider drop-shadow-lg">
-            ट्रक ड्राइवर
+            कोडर वाला
           </h1>
           <p className="text-sm md:text-base text-gray-200 mt-2 uppercase tracking-[0.3em] font-light">
             Music
@@ -106,9 +131,20 @@ export default function AppContainer() {
 
         <div className="w-full max-w-xl mb-12">
           {/* Tagline */}
-          <p className="text-white/80 text-center mb-6 text-sm font-medium tracking-wide drop-shadow-md">
-            बुरी नज़र वाले तेरा मुँह काला
-          </p>
+          <div className="h-6 mb-6 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={taglineIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5 }}
+                className="text-white/80 text-center text-sm font-medium tracking-wide drop-shadow-md"
+              >
+                {TAGLINES[taglineIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </div>
 
           <MusicPlayer
             isPlaying={isPlaying}
@@ -124,7 +160,7 @@ export default function AppContainer() {
           />
 
           <p className="text-white/50 text-center mt-8 text-xs font-light">
-            made with ♥ by Harshit
+            made with ♥ by Vikesh
           </p>
         </div>
       </div>
@@ -138,5 +174,5 @@ export default function AppContainer() {
         />
       </div>
     </div>
-  );
+  )
 }
