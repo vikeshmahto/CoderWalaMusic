@@ -8,7 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit);
+  --font-sans: var(--font-roboto-mono);
   --font-mono: var(--font-geist-mono);
   --font-arya: var(--font-arya);
 }

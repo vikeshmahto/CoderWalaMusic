@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, Arya } from "next/font/google";
+import { Roboto_Mono, Arya } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
+const robotoMono = Roboto_Mono({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-roboto-mono",
 });
 
 const arya = Arya({
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${arya.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" className={`${robotoMono.variable} ${arya.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full bg-black font-sans text-white">
         {children}
       </body>
