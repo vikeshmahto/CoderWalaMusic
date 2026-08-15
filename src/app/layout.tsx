@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Arya } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+});
+
+const arya = Arya({
+  subsets: ["devanagari", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-arya",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" className={`${outfit.variable} ${arya.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full bg-black font-sans text-white">
         {children}
       </body>
