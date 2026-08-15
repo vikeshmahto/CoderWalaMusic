@@ -222,8 +222,8 @@ export default function AppContainer() {
             className="w-full h-full object-cover opacity-80"
           />
         )}
-        {/* Subtle overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+        {/* Subtle dark overlay for better text readability (removed blur) */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       <div className="z-10 w-full h-full flex flex-col justify-between items-center py-12 px-6">
