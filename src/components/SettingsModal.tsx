@@ -18,6 +18,30 @@ export const PRESET_WALLPAPERS = [
     thumb: '/the-night-doesn-t-shine-she-does-follow-ghibliglimmers-for-m.jpg',
   },
   {
+    id: 'elegance-anime',
+    label: 'Anime Elegance',
+    url: '/elegance-isn-t-just-what-she-wears-it-s-who-she-is-anime-aiv.jpg',
+    thumb: '/elegance-isn-t-just-what-she-wears-it-s-who-she-is-anime-aiv.jpg',
+  },
+  {
+    id: 'spiderman',
+    label: 'Spider-Man',
+    url: '/epic-spider-man-and-spider-woman-poster.jpg',
+    thumb: '/epic-spider-man-and-spider-woman-poster.jpg',
+  },
+  {
+    id: 'pinterest-bg',
+    label: 'Pinterest Aesthetic',
+    url: '/pinterest-1124985181959022762.jpg',
+    thumb: '/pinterest-1124985181959022762.jpg',
+  },
+  {
+    id: 'truck-desert',
+    label: 'Desert Truck',
+    url: '/truck_desert_bg.jpg',
+    thumb: '/truck_desert_bg.jpg',
+  },
+  {
     id: 'cyberpunk',
     label: 'Cyberpunk City',
     url: 'https://images.unsplash.com/photo-1538370965046-79c0d6907d47?w=1920&q=85',
