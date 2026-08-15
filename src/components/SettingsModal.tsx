@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -10,6 +10,12 @@ export const PRESET_WALLPAPERS = [
     label: 'Default Video',
     url: null,
     thumb: null,
+  },
+  {
+    id: 'ghibli-night',
+    label: 'Ghibli Night',
+    url: '/the-night-doesn-t-shine-she-does-follow-ghibliglimmers-for-m.jpg',
+    thumb: '/the-night-doesn-t-shine-she-does-follow-ghibliglimmers-for-m.jpg',
   },
   {
     id: 'cyberpunk',
